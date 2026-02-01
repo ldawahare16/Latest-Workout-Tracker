@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Workout Tracker</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<header>
+  <div class="row">
+    <div class="controls">
+      <span class="pill">Profile <select id="profileSelect"></select></span>
+      <span class="pill">Week <select id="weekSelect"></select></span>
+      <div class="view-tabs" id="viewTabs"></div>
+      <button class="btn small ghost" id="gymModeBtn" type="button">Gym mode</button>
+    </div>
+    <div class="controls">
+      <button class="btn small" id="resetDayBtn" type="button">Reset open day</button>
+      <button class="btn small" id="resetWeekBtn" type="button">Reset week</button>
+      <button class="btn small" id="resetAllBtn" type="button">Reset all</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="card" id="helpCard">
+    <div style="font-weight:800;margin-bottom:4px;">How to use</div>
+    <div style="color:var(--muted);font-size:12px;line-height:1.35;">
+      Plan in <b>Week by muscle</b> using <b>Today's Lift</b>, then hit <b>Gym mode</b> for one-exercise-at-a-time + rest timer.
+      <br><br>
+      <b>Important:</b> if you open this via <code>file://</code>, modern browsers may block module imports. Use a local server or GitHub Pages.
+    </div>
+  </div>
+  <div id="app"></div>
+</main>
+
+<div class="overlay" id="gymOverlay" aria-hidden="true">
+  <div class="overlay-card">
+    <div class="overlay-header">
+      <div class="overlay-title">
+        <div class="big" id="gymDayTitle">Gym mode</div>
+        <div class="small" id="gymExerciseCounter">0 of 0</div>
+      </div>
+      <div class="controls">
+        <span class="pill">Day <select id="gymDaySelect"></select></span>
+        <button class="btn small" id="gymPrevBtn" type="button">Prev</button>
+        <button class="btn small" id="gymNextBtn" type="button">Next</button>
+        <button class="btn small" id="gymExitBtn" type="button">Exit</button>
+      </div>
+    </div>
+
+    <div class="overlay-body" id="gymExerciseHost"></div>
+
+    <div class="timer">
+      <div>
+        <div style="font-size:11px;color:var(--muted);">Rest timer</div>
+        <div class="timer-clock" id="restClock">01:30</div>
+      </div>
+      <div class="controls" id="restPresets">
+        <button class="btn small" type="button" data-rest="60">1:00</button>
+        <button class="btn small" type="button" data-rest="90">1:30</button>
+        <button class="btn small" type="button" data-rest="120">2:00</button>
+        <button class="btn small" type="button" data-rest="180">3:00</button>
+      </div>
+      <div class="controls">
+        <button class="btn small" id="restStartBtn" type="button">Start</button>
+        <button class="btn small" id="restPauseBtn" type="button">Pause</button>
+        <button class="btn small" id="restResetBtn" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+{
+  "profiles": {
+    "luke": {
+      "label": "Luke",
+      "weeks": 8,
+      "days": [
+        {
+          "id": "1",
+          "title": "Day 1",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "incline_bench",
+              "name": "Incline Barbell Bench",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "chest",
+                "push"
+              ]
+            },
+            {
+              "id": "weighted_pullups",
+              "name": "Weighted Pull-Ups",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "back",
+                "pull"
+              ]
+            },
+            {
+              "id": "rdl",
+              "name": "RDL",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "hamstrings",
+                "legs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Day 2",
+          "type": "run",
+          "exercises": [
+            {
+              "id": "run_easy",
+              "name": "Run",
+              "meta": "Distance/Time",
+              "type": "run",
+              "muscles": [
+                "conditioning"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Day 3",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "shoulder_press",
+              "name": "Shoulder Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "deficit_pendlay",
+              "name": "Deficit Pendlay Row",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "back",
+                "pull"
+              ]
+            },
+            {
+              "id": "squat",
+              "name": "Squat",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "quads",
+                "legs"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "sarah": {
+      "label": "Sarah",
+      "weeks": 8,
+      "days": [
+        {
+          "id": "1",
+          "title": "Running",
+          "type": "run",
+          "exercises": [
+            {
+              "id": "run",
+              "name": "Run",
+              "meta": "Distance/Time",
+              "type": "run",
+              "muscles": [
+                "conditioning"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Pilates",
+          "type": "freestyle",
+          "exercises": [
+            {
+              "id": "pilates",
+              "name": "Pilates",
+              "meta": "Class/session",
+              "type": "freestyle",
+              "muscles": [
+                "mobility"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Legs",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "squat_legpress",
+              "name": "Squat / Leg Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "legs",
+                "quads"
+              ]
+            },
+            {
+              "id": "ham_curl_rdl",
+              "name": "Hamstring Curls / RDLs",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "legs",
+                "hamstrings"
+              ]
+            },
+            {
+              "id": "calf_raises",
+              "name": "Calf Raises",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "legs",
+                "calves"
+              ]
+            },
+            {
+              "id": "glute_bridge_badgirls",
+              "name": "Glute Bridge / Bad Girls",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "glutes",
+                "legs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Push",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "bench_incline",
+              "name": "Bench / Incline Bench",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "chest"
+              ]
+            },
+            {
+              "id": "chest_flys",
+              "name": "Chest Flys",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "chest"
+              ]
+            },
+            {
+              "id": "oh_press",
+              "name": "Overhead Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "shoulders"
+              ]
+            },
+            {
+              "id": "lateral_raises",
+              "name": "Lateral Raises",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "shoulders"
+              ]
+            },
+            {
+              "id": "tricep_pushdown",
+              "name": "Tricep Pushdown",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "triceps"
+              ]
+            },
+            {
+              "id": "dips",
+              "name": "Dips",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "push",
+                "triceps"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Pull",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "pullups",
+              "name": "Pullups",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "pull",
+                "back"
+              ]
+            },
+            {
+              "id": "borow_widecurl",
+              "name": "Bent Over Row + Wide Bicep Curl (superset)",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "pull",
+                "back",
+                "biceps"
+              ]
+            },
+            {
+              "id": "lat_pulldown",
+              "name": "Lat Pulldown",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "pull",
+                "back"
+              ]
+            },
+            {
+              "id": "cs_row",
+              "name": "Chest Supported Row",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "pull",
+                "back"
+              ]
+            },
+            {
+              "id": "bicep_curl",
+              "name": "Bicep Curl",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "pull",
+                "biceps"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "muscleLabels": {
+    "chest": "Chest",
+    "back": "Back",
+    "shoulders": "Shoulders",
+    "legs": "Legs",
+    "quads": "Quads",
+    "hamstrings": "Hamstrings",
+    "glutes": "Glutes",
+    "calves": "Calves",
+    "biceps": "Biceps",
+    "triceps": "Triceps",
+    "push": "Push",
+    "pull": "Pull",
+    "conditioning": "Conditioning",
+    "mobility": "Mobility"
+  },
+  "muscleOrder": [
+    "legs",
+    "quads",
+    "hamstrings",
+    "glutes",
+    "calves",
+    "push",
+    "chest",
+    "shoulders",
+    "triceps",
+    "pull",
+    "back",
+    "biceps",
+    "conditioning",
+    "mobility"
+  ]
+}
