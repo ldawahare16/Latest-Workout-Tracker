@@ -6,7 +6,7 @@
       "days": [
         {
           "id": "1",
-          "title": "Day 1",
+          "title": "Push (Chest/Shoulders/Triceps)",
           "type": "lift",
           "exercises": [
             {
@@ -20,34 +20,65 @@
               ]
             },
             {
-              "id": "weighted_pullups",
-              "name": "Weighted Pull-Ups",
+              "id": "chest_flys",
+              "name": "Chest Flys",
               "meta": "3 sets",
               "type": "sets3",
               "muscles": [
-                "back",
-                "pull"
+                "chest",
+                "push"
               ]
             },
             {
-              "id": "rdl",
-              "name": "RDL",
+              "id": "shoulder_press",
+              "name": "Shoulder Press",
               "meta": "3 sets",
               "type": "sets3",
               "muscles": [
-                "hamstrings",
-                "legs"
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "cable_lateral_raise",
+              "name": "Cable Lateral Raise",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "oh_tricep_ext",
+              "name": "Overhead Tricep Extension",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "triceps",
+                "push"
+              ]
+            },
+            {
+              "id": "weighted_dips",
+              "name": "Weighted Dips",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "triceps",
+                "push",
+                "chest"
               ]
             }
           ]
         },
         {
           "id": "2",
-          "title": "Day 2",
+          "title": "Run",
           "type": "run",
           "exercises": [
             {
-              "id": "run_easy",
+              "id": "run",
               "name": "Run",
               "meta": "Distance/Time",
               "type": "run",
@@ -59,17 +90,17 @@
         },
         {
           "id": "3",
-          "title": "Day 3",
+          "title": "Pull (Back/Biceps)",
           "type": "lift",
           "exercises": [
             {
-              "id": "shoulder_press",
-              "name": "Shoulder Press",
+              "id": "weighted_pullups",
+              "name": "Weighted Pull-Ups",
               "meta": "3 sets",
               "type": "sets3",
               "muscles": [
-                "shoulders",
-                "push"
+                "back",
+                "pull"
               ]
             },
             {
@@ -83,13 +114,179 @@
               ]
             },
             {
+              "id": "lat_pulldown",
+              "name": "Lat Pulldown",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "back",
+                "pull"
+              ]
+            },
+            {
+              "id": "bayesian_curl",
+              "name": "Bayesian Cable Curl",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "biceps",
+                "pull"
+              ]
+            },
+            {
+              "id": "preacher_curl",
+              "name": "Preacher Curls",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "biceps",
+                "pull"
+              ]
+            },
+            {
+              "id": "hammer_curl",
+              "name": "Hammer Curls",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "biceps",
+                "pull"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "title": "Legs (Squat/RDL)",
+          "type": "lift",
+          "exercises": [
+            {
               "id": "squat",
               "name": "Squat",
               "meta": "3 sets",
               "type": "sets3",
               "muscles": [
-                "quads",
+                "legs",
+                "quads"
+              ]
+            },
+            {
+              "id": "rdl",
+              "name": "RDL",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "legs",
+                "hamstrings"
+              ]
+            },
+            {
+              "id": "calf_raises",
+              "name": "Calf Raises",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "legs",
+                "calves"
+              ]
+            },
+            {
+              "id": "glute_bridge",
+              "name": "Glute Bridge",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "glutes",
                 "legs"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "title": "Run",
+          "type": "run",
+          "exercises": [
+            {
+              "id": "run_2",
+              "name": "Run",
+              "meta": "Distance/Time",
+              "type": "run",
+              "muscles": [
+                "conditioning"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "title": "Upper Accessory (Shoulders/Arms)",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "bench",
+              "name": "Bench Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "chest",
+                "push"
+              ]
+            },
+            {
+              "id": "cable_lateral_raise_2",
+              "name": "Cable Lateral Raise",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "oh_press_2",
+              "name": "Overhead Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "tricep_pushdown",
+              "name": "Tricep Pushdown",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "triceps",
+                "push"
+              ]
+            },
+            {
+              "id": "bayesian_curl_2",
+              "name": "Bayesian Cable Curl",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "biceps",
+                "pull"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "title": "Rest / Mobility",
+          "type": "freestyle",
+          "exercises": [
+            {
+              "id": "mobility",
+              "name": "Mobility / Stretching",
+              "meta": "10-20 min",
+              "type": "freestyle",
+              "muscles": [
+                "mobility"
               ]
             }
           ]
@@ -321,7 +518,8 @@
     "push": "Push",
     "pull": "Pull",
     "conditioning": "Conditioning",
-    "mobility": "Mobility"
+    "mobility": "Mobility",
+    "other": "Other"
   },
   "muscleOrder": [
     "legs",
@@ -337,6 +535,7 @@
     "back",
     "biceps",
     "conditioning",
-    "mobility"
+    "mobility",
+    "other"
   ]
 }
