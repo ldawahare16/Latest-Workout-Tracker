@@ -1,10 +1,11 @@
-import DATA from './data.json' assert { type: 'json' };
-
 const $ = (s, el=document) => el.querySelector(s);
 const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
 const LS_KEY = 'workout_tracker_v2_state';
-const MUSCLE_LABELS = DATA.muscleLabels;
-const MUSCLE_ORDER = DATA.muscleOrder;
+
+let DATA = null;
+let MUSCLE_LABELS = {};
+let MUSCLE_ORDER = [];
 
 let state = loadState();
 let currentProfile = state._meta?.profile || 'luke';
@@ -22,24 +23,29 @@ function loadState() {
 function saveState() { try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch {} }
 
 function k(profile, week, dayId, exId, field){ return `${profile}::w${week}::d${dayId}::${exId}::${field}`; }
-function days(){ return DATA.profiles[currentProfile].days; }
+function days(){ return DATA?.profiles?.[currentProfile]?.days || []; }
 
 function ensureProfileOptions(){
-  const sel=$('#profileSelect'); sel.innerHTML='';
-  Object.entries(DATA.profiles).forEach(([id,p])=>{
+  const sel=document.querySelector('#profileSelect'); if(!sel) return;
+  sel.innerHTML='';
+  const profiles = DATA?.profiles || {};
+  Object.entries(profiles).forEach(([id,p])=>{
     const o=document.createElement('option'); o.value=id; o.textContent=p.label||id; sel.appendChild(o);
   });
+  if (!profiles[currentProfile]) currentProfile = Object.keys(profiles)[0] || 'luke';
   sel.value=currentProfile;
 }
 function ensureWeekOptions(){
-  const weekSel=$('#weekSelect'); weekSel.innerHTML='';
-  const max = DATA.profiles[currentProfile].weeks || 8;
+  const weekSel=document.querySelector('#weekSelect'); if(!weekSel) return;
+  weekSel.innerHTML='';
+  const max = DATA?.profiles?.[currentProfile]?.weeks || 8;
   for(let i=1;i<=max;i++){ const o=document.createElement('option'); o.value=String(i); o.textContent=String(i); weekSel.appendChild(o); }
   if (parseInt(currentWeek,10) > max) currentWeek='1';
   weekSel.value=currentWeek;
 }
 function ensureViewTabs(){
-  const host=$('#viewTabs'); host.innerHTML='';
+  const host=document.querySelector('#viewTabs'); if(!host) return;
+  host.innerHTML='';
   [{id:'day',label:'Day'},{id:'week',label:'Week'},{id:'muscle',label:'Week by muscle'}].forEach(v=>{
     const b=document.createElement('button');
     b.className='btn small' + (currentView===v.id ? ' primary':'');
@@ -50,7 +56,7 @@ function ensureViewTabs(){
 }
 
 function resetOpenDay(){
-  const open = $('details.day[open]');
+  const open = document.querySelector('details.day[open]');
   if (!open) return;
   const dayId=open.dataset.day;
   const day=days().find(d=>d.id===dayId); if(!day) return;
@@ -109,12 +115,17 @@ function dayComplete(day){
 }
 
 function renderDay({expandAll=false}={}){
-  const host=$('#app'); host.innerHTML='';
-  days().forEach((day, idx)=>{
+  const host=document.querySelector('#app'); if(!host) return;
+  host.innerHTML='';
+  const dlist = days();
+  if (!dlist.length) {
+    host.innerHTML = `<div class="card" style="color:var(--muted);font-size:12px;">No days found for profile "${currentProfile}". Check data.json.</div>`;
+    return;
+  }
+  dlist.forEach((day, idx)=>{
     const det=document.createElement('details'); det.className='card day'; det.dataset.day=day.id;
     det.open = expandAll || idx===0;
     const {total,done}=dayComplete(day);
-
     const sum=document.createElement('summary');
     sum.innerHTML = `<div class="day-title">${day.title}</div><div class="badge">${done}/${total} done</div>`;
     det.appendChild(sum);
@@ -130,7 +141,8 @@ function canonicalMuscle(ex){
 }
 
 function renderMuscle(){
-  const host=$('#app'); host.innerHTML='';
+  const host=document.querySelector('#app'); if(!host) return;
+  host.innerHTML='';
   const map=new Map();
   days().forEach(day=>day.exercises.forEach(ex=>{
     const m=canonicalMuscle(ex);
@@ -173,7 +185,7 @@ function renderMuscle(){
 let gym={dayId:'today', list:[], index:0};
 let rest={total:90, remaining:90, running:false, interval:null};
 const fmt = s => { s=Math.max(0,Math.floor(s)); const m=Math.floor(s/60), r=s%60; return String(m).padStart(2,'0')+':'+String(r).padStart(2,'0'); };
-const updateClock=()=>{ $('#restClock').textContent = fmt(rest.remaining); };
+const updateClock=()=>{ const el=document.querySelector('#restClock'); if(el) el.textContent = fmt(rest.remaining); };
 function beep(){ try{ const ctx=new (window.AudioContext||window.webkitAudioContext)(); const o=ctx.createOscillator(); const g=ctx.createGain(); o.type='sine'; o.frequency.value=880; g.gain.value=0.08; o.connect(g); g.connect(ctx.destination); o.start(); setTimeout(()=>{o.stop(); ctx.close();},180);}catch{} }
 function setRest(sec){ rest.total=sec; rest.remaining=sec; rest.running=false; if(rest.interval){clearInterval(rest.interval); rest.interval=null;} updateClock(); }
 function startRest(){ if(rest.running) return; rest.running=true; if(rest.interval) clearInterval(rest.interval); rest.interval=setInterval(()=>{ if(!rest.running) return; rest.remaining-=1; updateClock(); if(rest.remaining<=0){ rest.running=false; clearInterval(rest.interval); rest.interval=null; rest.remaining=0; updateClock(); beep(); } },1000); }
@@ -208,15 +220,18 @@ function buildGymList(dayId){
 function exSpec(dayId, exId){ const day=days().find(d=>d.id===dayId); return day? day.exercises.find(e=>e.id===exId):null; }
 
 function renderGym(){
-  const host=$('#gymExerciseHost'); host.innerHTML='';
-  $('#gymExerciseCounter').textContent = `${gym.list.length? gym.index+1:0} of ${gym.list.length}`;
+  const host=document.querySelector('#gymExerciseHost'); if(!host) return;
+  host.innerHTML='';
+  const counter=document.querySelector('#gymExerciseCounter');
+  if (counter) counter.textContent = `${gym.list.length? gym.index+1:0} of ${gym.list.length}`;
   if(!gym.list.length){ host.innerHTML=`<div style="color:var(--muted);font-size:12px;">No exercises selected.</div>`; return; }
   gym.index=Math.max(0,Math.min(gym.index,gym.list.length-1));
   const {dayId, exId}=gym.list[gym.index];
   const ex=exSpec(dayId, exId);
   if(!ex){ host.innerHTML=`<div style="color:var(--muted);font-size:12px;">Missing exercise.</div>`; return; }
 
-  $('#gymDayTitle').textContent = (gym.dayId==='today') ? "Today's Lift" : (days().find(d=>d.id===gym.dayId)?.title||'Gym mode');
+  const titleEl=document.querySelector('#gymDayTitle');
+  if (titleEl) titleEl.textContent = (gym.dayId==='today') ? "Today's Lift" : (days().find(d=>d.id===gym.dayId)?.title||'Gym mode');
 
   const card=document.createElement('div'); card.className='card'; card.style.margin='0';
   const head=document.createElement('div'); head.style.display='flex'; head.style.justifyContent='space-between'; head.style.alignItems='center'; head.style.gap='10px';
@@ -259,34 +274,35 @@ function renderGym(){
 
 function openGym(){
   const anyToday = days().some(day=>day.exercises.some(ex=>!!state[k(currentProfile,currentWeek,day.id,ex.id,'today')]));
-  gym.dayId = anyToday ? 'today' : days()[0].id;
-  $('#gymDaySelect').value = gym.dayId;
+  gym.dayId = anyToday ? 'today' : (days()[0]?.id || 'today');
+  const sel=document.querySelector('#gymDaySelect'); if(sel) sel.value = gym.dayId;
   gym.list = buildGymList(gym.dayId);
   gym.index=0;
-  $('#gymOverlay').classList.add('open');
-  $('#gymOverlay').setAttribute('aria-hidden','false');
+  const ov=document.querySelector('#gymOverlay'); if(ov){ ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); }
   updateClock(); renderGym();
 }
-function closeGym(){ $('#gymOverlay').classList.remove('open'); $('#gymOverlay').setAttribute('aria-hidden','true'); pauseRest(); }
+function closeGym(){ const ov=document.querySelector('#gymOverlay'); if(ov){ ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); } pauseRest(); }
 
 function initGymUI(){
-  const sel=$('#gymDaySelect'); sel.innerHTML='';
+  const sel=document.querySelector('#gymDaySelect'); if(!sel) return;
+  sel.innerHTML='';
   const o0=document.createElement('option'); o0.value='today'; o0.textContent="Today's Lift (selected)"; sel.appendChild(o0);
   days().forEach(d=>{ const o=document.createElement('option'); o.value=d.id; o.textContent=d.title; sel.appendChild(o); });
   sel.value='today';
   sel.onchange=()=>{ gym.dayId=sel.value; gym.list=buildGymList(gym.dayId); gym.index=0; renderGym(); };
 
-  $('#gymModeBtn').onclick=openGym;
-  $('#gymPrevBtn').onclick=()=>{ gym.index=Math.max(0,gym.index-1); renderGym(); };
-  $('#gymNextBtn').onclick=()=>{ gym.index=Math.min(gym.list.length-1,gym.index+1); renderGym(); };
-  $('#gymExitBtn').onclick=closeGym;
+  const gymBtn=document.querySelector('#gymModeBtn'); if(gymBtn) gymBtn.onclick=openGym;
+  const prev=document.querySelector('#gymPrevBtn'); if(prev) prev.onclick=()=>{ gym.index=Math.max(0,gym.index-1); renderGym(); };
+  const next=document.querySelector('#gymNextBtn'); if(next) next.onclick=()=>{ gym.index=Math.min(gym.list.length-1,gym.index+1); renderGym(); };
+  const exit=document.querySelector('#gymExitBtn'); if(exit) exit.onclick=closeGym;
 
-  $('#restStartBtn').onclick=startRest;
-  $('#restPauseBtn').onclick=pauseRest;
-  $('#restResetBtn').onclick=resetRest;
-  $$('#restPresets button[data-rest]').forEach(b=>b.onclick=()=>{ setRest(parseInt(b.dataset.rest,10)); startRest(); });
+  const rs=document.querySelector('#restStartBtn'); if(rs) rs.onclick=startRest;
+  const rp=document.querySelector('#restPauseBtn'); if(rp) rp.onclick=pauseRest;
+  const rr=document.querySelector('#restResetBtn'); if(rr) rr.onclick=resetRest;
+  const presetHost=document.querySelector('#restPresets');
+  if (presetHost) presetHost.querySelectorAll('button[data-rest]').forEach(b=> b.onclick=()=>{ setRest(parseInt(b.dataset.rest,10)); startRest(); });
 
-  document.onkeydown=(e)=>{ if(e.key==='Escape' && $('#gymOverlay').classList.contains('open')) closeGym(); };
+  document.onkeydown=(e)=>{ if(e.key==='Escape' && document.querySelector('#gymOverlay')?.classList.contains('open')) closeGym(); };
   setRest(90);
 }
 
@@ -296,14 +312,45 @@ function render(){
   if(currentView==='muscle') renderMuscle();
 }
 
-function init(){
-  ensureProfileOptions(); ensureWeekOptions(); ensureViewTabs();
-  $('#profileSelect').onchange=()=>{ currentProfile=$('#profileSelect').value; ensureWeekOptions(); ensureViewTabs(); initGymUI(); saveMeta(); render(); };
-  $('#weekSelect').onchange=()=>{ currentWeek=$('#weekSelect').value; saveMeta(); render(); };
-  $('#resetDayBtn').onclick=resetOpenDay;
-  $('#resetWeekBtn').onclick=resetWeek;
-  $('#resetAllBtn').onclick=resetAll;
-  initGymUI();
-  render();
+async function loadData() {
+  const res = await fetch('./data.json', { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Failed to load data.json: ${res.status}`);
+  return await res.json();
+}
+
+async function init(){
+  try {
+    DATA = await loadData();
+    MUSCLE_LABELS = DATA.muscleLabels || {};
+    MUSCLE_ORDER = DATA.muscleOrder || [];
+
+    if (!DATA.profiles?.[currentProfile]) currentProfile = Object.keys(DATA.profiles || {})[0] || 'luke';
+
+    ensureProfileOptions();
+    ensureWeekOptions();
+    ensureViewTabs();
+
+    document.querySelector('#profileSelect').onchange=()=>{ currentProfile=document.querySelector('#profileSelect').value; ensureWeekOptions(); ensureViewTabs(); initGymUI(); saveMeta(); render(); };
+    document.querySelector('#weekSelect').onchange=()=>{ currentWeek=document.querySelector('#weekSelect').value; saveMeta(); render(); };
+
+    document.querySelector('#resetDayBtn').onclick=resetOpenDay;
+    document.querySelector('#resetWeekBtn').onclick=resetWeek;
+    document.querySelector('#resetAllBtn').onclick=resetAll;
+
+    initGymUI();
+    render();
+  } catch (err) {
+    console.error(err);
+    const host = document.querySelector('#app');
+    if (host) {
+      host.innerHTML = `<div class="card" style="border-color:#7f1d1d;">
+        <div style="font-weight:900;">App failed to load workouts</div>
+        <div style="color:var(--muted);font-size:12px;margin-top:6px;">
+          Open DevTools → Console to see the error.<br/>
+          Most common cause: data.json missing or blocked.
+        </div>
+      </div>`;
+    }
+  }
 }
 init();
