@@ -2,32 +2,29 @@
   "profiles": {
     "luke": {
       "label": "Luke",
-      "weeks": 8,
+      "weeks": 12,
+      "settings": {
+        "bodyweight_lbs": 165,
+        "lift_kcal_per_set": 10
+      },
       "days": [
         {
           "id": "1",
-          "title": "Push (Chest/Shoulders/Triceps)",
-          "type": "lift",
+          "title": "Sprints + Upper Accessory (Shoulders/Arms)",
+          "type": "hybrid",
           "exercises": [
             {
-              "id": "incline_bench",
-              "name": "Incline Barbell Bench",
-              "meta": "3 sets",
-              "type": "sets3",
+              "id": "sprints",
+              "name": "Sprints",
+              "meta": "Log your sprint session",
+              "type": "cardio",
               "muscles": [
-                "chest",
-                "push"
-              ]
-            },
-            {
-              "id": "chest_flys",
-              "name": "Chest Flys",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "chest",
-                "push"
-              ]
+                "conditioning"
+              ],
+              "cardioDefaults": {
+                "mode": "sprints",
+                "met": 11
+              }
             },
             {
               "id": "shoulder_press",
@@ -60,6 +57,99 @@
               ]
             },
             {
+              "id": "bayesian_curl",
+              "name": "Bayesian Cable Curl",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "biceps",
+                "pull"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "title": "Cardio + Shoulders",
+          "type": "hybrid",
+          "exercises": [
+            {
+              "id": "cardio",
+              "name": "Cardio",
+              "meta": "Run / walk incline / bike / row",
+              "type": "cardio",
+              "muscles": [
+                "conditioning"
+              ]
+            },
+            {
+              "id": "cable_lateral_raise_2",
+              "name": "Cable Lateral Raise",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "chest_flys",
+              "name": "Chest Flys",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "chest",
+                "push"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "title": "Upper Body A (Push emphasis)",
+          "type": "lift",
+          "exercises": [
+            {
+              "id": "incline_bench",
+              "name": "Incline Barbell Bench",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "chest",
+                "push"
+              ]
+            },
+            {
+              "id": "chest_flys_2",
+              "name": "Chest Flys",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "chest",
+                "push"
+              ]
+            },
+            {
+              "id": "shoulder_press_2",
+              "name": "Shoulder Press",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "shoulders",
+                "push"
+              ]
+            },
+            {
+              "id": "weighted_pullups",
+              "name": "Weighted Pull-Ups",
+              "meta": "3 sets",
+              "type": "sets3",
+              "muscles": [
+                "back",
+                "pull"
+              ]
+            },
+            {
               "id": "weighted_dips",
               "name": "Weighted Dips",
               "meta": "3 sets",
@@ -73,36 +163,10 @@
           ]
         },
         {
-          "id": "2",
-          "title": "Run",
-          "type": "run",
-          "exercises": [
-            {
-              "id": "run",
-              "name": "Run",
-              "meta": "Distance/Time",
-              "type": "run",
-              "muscles": [
-                "conditioning"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "3",
-          "title": "Pull (Back/Biceps)",
+          "id": "4",
+          "title": "Upper Body B (Pull emphasis)",
           "type": "lift",
           "exercises": [
-            {
-              "id": "weighted_pullups",
-              "name": "Weighted Pull-Ups",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "back",
-                "pull"
-              ]
-            },
             {
               "id": "deficit_pendlay",
               "name": "Deficit Pendlay Row",
@@ -120,16 +184,6 @@
               "type": "sets3",
               "muscles": [
                 "back",
-                "pull"
-              ]
-            },
-            {
-              "id": "bayesian_curl",
-              "name": "Bayesian Cable Curl",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "biceps",
                 "pull"
               ]
             },
@@ -156,8 +210,8 @@
           ]
         },
         {
-          "id": "4",
-          "title": "Legs (Squat/RDL)",
+          "id": "5",
+          "title": "Legs (Squat + RDL)",
           "type": "lift",
           "exercises": [
             {
@@ -201,101 +255,16 @@
               ]
             }
           ]
-        },
-        {
-          "id": "5",
-          "title": "Run",
-          "type": "run",
-          "exercises": [
-            {
-              "id": "run_2",
-              "name": "Run",
-              "meta": "Distance/Time",
-              "type": "run",
-              "muscles": [
-                "conditioning"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "6",
-          "title": "Upper Accessory (Shoulders/Arms)",
-          "type": "lift",
-          "exercises": [
-            {
-              "id": "bench",
-              "name": "Bench Press",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "chest",
-                "push"
-              ]
-            },
-            {
-              "id": "cable_lateral_raise_2",
-              "name": "Cable Lateral Raise",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "shoulders",
-                "push"
-              ]
-            },
-            {
-              "id": "oh_press_2",
-              "name": "Overhead Press",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "shoulders",
-                "push"
-              ]
-            },
-            {
-              "id": "tricep_pushdown",
-              "name": "Tricep Pushdown",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "triceps",
-                "push"
-              ]
-            },
-            {
-              "id": "bayesian_curl_2",
-              "name": "Bayesian Cable Curl",
-              "meta": "3 sets",
-              "type": "sets3",
-              "muscles": [
-                "biceps",
-                "pull"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "7",
-          "title": "Rest / Mobility",
-          "type": "freestyle",
-          "exercises": [
-            {
-              "id": "mobility",
-              "name": "Mobility / Stretching",
-              "meta": "10-20 min",
-              "type": "freestyle",
-              "muscles": [
-                "mobility"
-              ]
-            }
-          ]
         }
       ]
     },
     "sarah": {
       "label": "Sarah",
       "weeks": 8,
+      "settings": {
+        "bodyweight_lbs": 135,
+        "lift_kcal_per_set": 8
+      },
       "days": [
         {
           "id": "1",
@@ -306,10 +275,14 @@
               "id": "run",
               "name": "Run",
               "meta": "Distance/Time",
-              "type": "run",
+              "type": "cardio",
               "muscles": [
                 "conditioning"
-              ]
+              ],
+              "cardioDefaults": {
+                "mode": "run",
+                "met": 9.8
+              }
             }
           ]
         },
@@ -537,5 +510,42 @@
     "conditioning",
     "mobility",
     "other"
+  ],
+  "cardioModes": [
+    {
+      "id": "run",
+      "label": "Run",
+      "defaultMET": 9.8
+    },
+    {
+      "id": "walk",
+      "label": "Walk",
+      "defaultMET": 3.5
+    },
+    {
+      "id": "incline_walk",
+      "label": "Incline walk",
+      "defaultMET": 6.0
+    },
+    {
+      "id": "bike",
+      "label": "Bike",
+      "defaultMET": 7.0
+    },
+    {
+      "id": "row",
+      "label": "Row",
+      "defaultMET": 7.0
+    },
+    {
+      "id": "sprints",
+      "label": "Sprints",
+      "defaultMET": 11.0
+    },
+    {
+      "id": "other",
+      "label": "Other",
+      "defaultMET": 6.0
+    }
   ]
 }

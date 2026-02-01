@@ -10,7 +10,7 @@ select,input[type="number"],input[type="text"]{background:#060b16;color:var(--te
 .btn.ghost{background:transparent}
 .btn.primary{border-color:#14532d;background:#052e16}
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(15,23,42,.6);font-size:12px}
-main{max-width:1000px;margin:0 auto;padding:12px}
+main{max-width:1100px;margin:0 auto;padding:12px}
 .card{border:1px solid var(--line);background:rgba(15,23,42,.75);border-radius:16px;padding:10px;margin:10px 0}
 .day summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none}
 .day summary::-webkit-details-marker{display:none}
@@ -18,7 +18,7 @@ main{max-width:1000px;margin:0 auto;padding:12px}
 .badge{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
 .exercise{border-top:1px solid var(--line);padding:10px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
 .exercise:first-of-type{border-top:none}
-.ex-left{min-width:220px;flex:1}
+.ex-left{min-width:240px;flex:1}
 .ex-name{font-weight:800}
 .ex-meta{font-size:12px;color:var(--muted);margin-top:2px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
@@ -27,6 +27,17 @@ main{max-width:1000px;margin:0 auto;padding:12px}
 .inputs label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
 .toggle{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
 .view-tabs{display:flex;gap:6px;flex-wrap:wrap}
+
+/* Summary tables */
+.table{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;overflow:hidden;border:1px solid var(--line);border-radius:14px}
+.table th,.table td{padding:10px;border-bottom:1px solid var(--line);font-size:13px}
+.table th{color:var(--muted);font-weight:700;text-align:left;background:rgba(2,6,23,.35)}
+.table tr:last-child td{border-bottom:none}
+.kpi{display:flex;gap:10px;flex-wrap:wrap}
+.kpi .box{flex:1;min-width:220px;border:1px solid var(--line);border-radius:16px;padding:10px;background:rgba(2,6,23,.35)}
+.kpi .big{font-size:28px;font-weight:900}
+.kpi .small{color:var(--muted);font-size:12px;margin-top:2px}
+
 /* Overlay */
 .overlay{position:fixed;inset:0;z-index:50;display:none;padding:12px;background:rgba(2,6,23,.92);backdrop-filter:blur(10px);overflow:auto}
 .overlay.open{display:block}

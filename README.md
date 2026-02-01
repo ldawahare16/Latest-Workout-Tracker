@@ -1,21 +1,18 @@
-# Workout Tracker (Modular)
+# Workout Tracker v3 (Hybrid + Summary)
 
-This is a static app with separate files (no huge single HTML).
+## New in v3
+- Luke structure: 1 sprint+upper accessory day, 1 cardio+shoulders day, 2 upper days, 1 legs day (editable in data.json)
+- Cardio logging (run, incline walk, bike, row, sprints, etc.) with MET override
+- Weekly Summary tab:
+  - Cardio calories (MET-based)
+  - Lift calories estimate (sets × kcal-per-set)
+  - Sets logged per muscle group
 
-## Why this works better
-- Much easier to debug (JS errors won’t “hide” inside one giant file)
-- GitHub Pages-friendly
-- No service-worker caching surprises (unless you add one intentionally)
-
-## IMPORTANT: local file vs server
-This app uses ES Modules (`<script type="module">`). Most browsers **block module imports** when opened as `file://`.
-
-### Run locally (recommended)
+## Local dev
 ```bash
 python3 -m http.server 8080
 ```
-Then open:
-http://localhost:8080
+Open http://localhost:8080
 
-### Deploy
-Upload these files to your repo and enable GitHub Pages.
+## Deploy
+Upload files to repo root and enable GitHub Pages.
